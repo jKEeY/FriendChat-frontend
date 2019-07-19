@@ -1,0 +1,78 @@
+<v-layout-app>
+  <template slot="drawer">
+    <v-navigation-drawer app>
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title" v-if="room">
+              {{ room.name }}
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+      <v-divider></v-divider>
+      <v-list>
+        <v-list-group
+          no-action
+          sub-group
+          value="true"
+        >
+        <template v-slot:activator>
+          <v-list-tile>
+            <v-list-tile-title>Текушие пользователи комнаты</v-list-tile-title>
+          </v-list-tile>
+        </template>
+
+        <v-list-tile
+          v-for="(a, i) in active"
+          v-if="active"
+          :key="i * 321312"
+          @click=""
+        >
+          <v-list-tile-title v-text="a.user.username"></v-list-tile-title>
+          <v-list-tile-action>
+            <v-icon v-text="'perm_identity'"></v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+        </v-list-group>
+        <v-list-group
+          no-action
+          sub-group
+          value="true"
+        >
+        <template v-slot:activator>
+          <v-list-tile>
+            <v-list-tile-title>Подписчики</v-list-tile-title>
+          </v-list-tile>
+        </template>
+
+        <v-list-tile
+          v-for="(follower, i) in followers"
+          :key="i * 321312"
+          v-if="followers"
+          @click=""
+        >
+          <v-list-tile-title v-text="follower.username"></v-list-tile-title>
+          <v-list-tile-action>
+            <v-icon v-text="'perm_identity'"></v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+        </v-list-group>
+      </v-list>
+    </v-navigation-drawer>
+  </template>
+  <template slot="icon">
+    <v-icon @click="leaveChat">arrow_back</v-icon>
+  </template>
+  <template slot="content">
+    <v-layout app>
+      <div>
+        <ul>
+          <li v-for="m in messages">
+            {{m.author}} - {{ m.text }}
+          </li>
+        </ul>
+      </div>
+    </v-layout>
+  </template>
+</v-layout-app>

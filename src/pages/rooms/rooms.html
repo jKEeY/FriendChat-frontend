@@ -1,0 +1,27 @@
+<v-layout-app>
+  <template slot="toolbar"></template>
+  <template slot="icon"></template>
+  <template slot="content">
+    <v-layout grid-list-md text-xs-center wrap>
+      <v-flex v-for="room in rooms" v-if="rooms.length > 0" :key="room._id" class="room" xs3 >
+          <v-card color="blue-grey darken-2" class="white--text">
+            <v-card-title primary-title>
+              <div>
+                <div class="headline">{{ room.name }}</div>
+                <span class="grey--text">{{ room.description }}</span>
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn flat dark @click="goRoom(room._id)">Войти</v-btn>
+              <v-btn flat dark>Вступить в комнату</v-btn>
+            </v-card-actions>
+          </v-card>
+      </v-flex>
+      <div v-else>
+        <h3>
+          Активных комнат нет, но вы можете создать её первее всех
+        </h3>
+      </div>
+    </v-layout>
+  </template>
+</v-layout-app>

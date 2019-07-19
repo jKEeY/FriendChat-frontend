@@ -1,0 +1,58 @@
+<v-layout-app>
+    <v-layout column justify-center align-center>
+        <v-flex xs12 sm8>
+          <v-card width="600">
+            <v-card-title>
+              <h1>
+                Регистрация
+              </h1>
+            </v-card-title>
+            <v-card-text>
+              <v-form
+                ref="form"
+                v-model="valid"
+                lazy-validation
+              >
+                <v-text-field
+                  v-model="name"
+                  :counter="16"
+                  :rules="nameRules"
+                  label="Введите имя пользователя"
+                  required
+                ></v-text-field>
+      
+                <v-text-field
+                  v-model="password"
+                  :rules="passwordRules"
+                  :append-icon="show ? 'visibility' : 'visibility_off'"
+                  :type="show ? 'text' : 'password'"
+                  label="Введите пароль"
+                  @click:append="show = !show"
+                  required
+                ></v-text-field>
+      
+                <v-text-field
+                  v-model="passwordTwo"
+                  :rules="passwordTwoRules"
+                  :append-icon="show ? 'visibility' : 'visibility_off'"
+                  :type="show ? 'text' : 'password'"
+                  label="Повторите пароль"
+                  @click:append="show = !show"
+                  required
+                ></v-text-field>
+      
+      
+                <v-btn
+                  :disabled="!valid"
+                  color="primary"
+                  @click="validate"
+                >
+                  Зарегистрироваться
+                </v-btn>
+                <span class="grey--text reg" @click="$router.push({ name: 'login' })">Войти в аккаунт</span>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+</v-layout-app>
