@@ -1,0 +1,17 @@
+<div class="item">
+  <div class="item-body">
+      <div v-if="author.username === 'system'" class="system">
+          <p class="text-xs-center">
+            {{ text }}
+          </p>
+      </div>
+      <div v-else class="m-wrapp">
+        <div class="m-message" :class="{owner}">
+          <small>
+            <strong> {{ author.username }} </strong>
+          </small>
+          <p>{{ text }}</p>
+        </div>
+      </div>
+  </div>
+</div>

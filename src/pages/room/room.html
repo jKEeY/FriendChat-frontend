@@ -1,6 +1,6 @@
 <v-layout-app>
   <template slot="drawer">
-    <v-navigation-drawer app>
+    <v-navigation-drawer app mobile-break-point="650px">
       <v-toolbar flat>
         <v-list>
           <v-list-tile>
@@ -65,14 +65,20 @@
     <v-icon @click="leaveChat">arrow_back</v-icon>
   </template>
   <template slot="content">
-    <v-layout app>
-      <div>
-        <ul>
-          <li v-for="m in messages">
-            {{m.author}} - {{ m.text }}
-          </li>
-        </ul>
+      <div class="c-wrapp">
+        <div class="c-messages" ref="containerMessage">
+          <c-message v-for="m in messages" :key="m._id" :author="m.author" :text="m.text" :owner="name === m.author.username" />
+        </div>
+        <div class="c-form">
+          <v-text-field
+            @keydown.enter="send"
+            label="Введите сообщение..."
+            outline
+
+            v-model="text"
+          ></v-text-field>
+          <v-btn large @click="send">Отправить</v-btn>
+        </div>
       </div>
-    </v-layout>
   </template>
 </v-layout-app>

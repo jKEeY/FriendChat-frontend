@@ -10,6 +10,8 @@ export default {
       isOpen: false,
       name: '',
       description: '',
+      items: [2, 5, 10],
+      item: null,
     };
   },
   methods: {
@@ -17,10 +19,12 @@ export default {
       this.$emit('submit', {
         name: this.name,
         description: this.description,
+        max_size: this.item,
       });
       this.name = '';
       this.description = '';
       this.isOpen = false;
+      this.item = null;
     },
   },
   watch: {

@@ -27,10 +27,8 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <v-container fluid>
-        <add-room-modal :open="isOpen" @submit="submit"></add-room-modal>
-        <slot name="content"/>
-      </v-container>
+      <add-room-modal :open="isOpen" @submit="submit"></add-room-modal>
+      <slot name="content"/>
     </v-content>
   </v-app>
 </template>
@@ -51,12 +49,13 @@ export default {
     };
   },
   methods: {
-    async submit({ name, description }) {
+    async submit({ name, description, max_size }) {
       try {
         const token = localStorage.getItem('token');
         const result = await api('http://localhost:3000/api/rooms/add', {
           name,
           description,
+          max_size
         });
         this.isOpen = result.success;
       } catch(e) {};

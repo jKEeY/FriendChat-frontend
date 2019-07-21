@@ -7,14 +7,4 @@ export default {
   meta: {
     auth: true,
   },
-  async beforeRouteLeave() {
-    try {
-      console.log('hello1')
-      await api(`http://localhost:3000/api/active/delete/${this.$route.params.id}`, {
-        socket_id: this.$socket.id,
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  },
 };

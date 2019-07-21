@@ -13,6 +13,12 @@
             <v-flex xs12 sm6 md6>
               <v-text-field v-model="description" label="Описание"></v-text-field>
             </v-flex>
+            <v-flex xs12 sm6 d-flex>
+              <v-select
+                :items="items"
+                v-model="item"
+                label="Максимальное кол-во участников"
+              ></v-select>
             </v-flex>
           </v-layout>
         </v-container>
