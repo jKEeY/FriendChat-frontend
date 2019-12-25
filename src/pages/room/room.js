@@ -66,9 +66,11 @@ export default {
         if (result.success) {
           this.messages = result.messages;
           this.$nextTick(() => {
-            console.log((this.$refs.containerMessage).clientHeight, (this.$refs.containerMessage).scrollTop, (this.$refs.containerMessage).scrollHeight);
-            const lastItem = (this.$refs.containerMessage).lastElementChild;
-            if (((this.$refs.containerMessage).clientHeight + (this.$refs.containerMessage).scrollTop + lastItem.offsetHeight) === (this.$refs.containerMessage).scrollHeight) {
+            const lastItemHeight = this.$refs.containerMessage.lastElementChild.offsetHeight;
+            const clientHeight = this.$refs.containerMessage.clientHeight;
+            const scrollTopClient = this.$refs.containerMessage.scrollTop;
+            const scrollHeightClient = this.$refs.containerMessage.scrollHeight;
+            if ((clientHeight + scrollTopClient + lastItem) === scrollHeightClient) {
               this.fixBottom(this.$refs.containerMessage);
             }
           });
